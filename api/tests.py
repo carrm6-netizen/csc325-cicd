@@ -9,3 +9,7 @@ class HealthTests(APITestCase):
     def test_health_status_ok(self):
         response = self.client.get("/api/health/")
         self.assertEqual(response.json()["status"], "ok")
+
+    def test_health_includes_service_name(self):
+        response = self.client.get("/api/health/")
+        self.assertEqual(response.json()["service"], "csc325-demo")
